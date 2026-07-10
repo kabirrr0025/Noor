@@ -20,6 +20,9 @@
     #light{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:999}
     #light img{max-width:90vw;max-height:85vh;border:12px solid white;border-radius:8px;box-shadow:0 8px 48px rgba(0,0,0,.6)}
     .close-btn{position:fixed;right:18px;top:14px;background:#fff;padding:8px 12px;border-radius:999px;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.2)}
+    .nav-button{display:flex;justify-content:center;padding:30px 0;gap:20px}
+    .nav-btn{padding:14px 32px;border:none;border-radius:30px;background:#ff78ab;color:#fff;font-size:16px;font-weight:bold;cursor:pointer;transition:.3s;box-shadow:0 8px 20px rgba(255,120,171,.3)}
+    .nav-btn:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(255,120,171,.4)}
     @media (max-width:520px){ .card{width:44vw} }
   </style>
 </head>
@@ -28,7 +31,7 @@
 
   <!-- Non-blocking in-page notice instead of alert() -->
   <div class="notice" role="status" aria-live="polite">
-    BEST TIMES FOR SURE!! (ykw you are so unbelievably special to me in a way that can never be measured or counted. You're not just my girlfriend. You're my best friend, my safe place, my partner[...]
+    BEST TIMES FOR SURE!! (ykw you are so unbelievably special to me in a way that can never be measured or counted. You're not just my girlfriend. You're my best friend, my safe place, my partner in crime)
   </div>
 
   <div class="grid" aria-live="polite">
@@ -65,6 +68,11 @@
   <!-- Lightbox -->
   <div id="light" aria-hidden="true" tabindex="-1">
     <img id="big" alt="Expanded photo">
+  </div>
+
+  <!-- Navigation Buttons -->
+  <div class="nav-button">
+    <a href="chapter5_memorybook.html" class="nav-btn">Go Ahead →</a>
   </div>
 
   <script>
