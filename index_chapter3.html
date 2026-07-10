@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Noor - Chapter 3</title>
+<style>
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ffe4ef,#fff);
+font-family:Georgia,serif;
+overflow:hidden;
+}
+.card{
+width:min(90%,700px);
+background:rgba(255,255,255,.75);
+backdrop-filter:blur(12px);
+border-radius:22px;
+padding:40px;
+box-shadow:0 15px 35px rgba(255,120,170,.25);
+position:relative;
+}
+.ribbon{
+position:absolute;
+top:-8px;
+left:50%;
+transform:translateX(-50%);
+width:120px;
+height:24px;
+background:#f8b7cc;
+border-radius:0 0 12px 12px;
+}
+h1{
+font-size:2.5rem;
+color:#ff5b95;
+text-align:center;
+margin-top:10px;
+}
+#letter{
+white-space:pre-wrap;
+font-size:1.08rem;
+line-height:1.8;
+min-height:260px;
+}
+.cursor{
+display:inline-block;
+width:8px;
+background:#ff5b95;
+animation:blink .8s infinite;
+}
+@keyframes blink{
+50%{opacity:0;}
+}
+button{
+margin-top:25px;
+padding:12px 22px;
+border:none;
+border-radius:30px;
+background:#ff7da8;
+color:white;
+font-size:1rem;
+cursor:pointer;
+display:none;
+}
+.flower{
+position:absolute;
+font-size:22px;
+animation:fall linear infinite;
+opacity:.6;
+}
+@keyframes fall{
+from{transform:translateY(-10vh) rotate(0deg);}
+to{transform:translateY(110vh) rotate(360deg);}
+}
+</style>
+</head>
+<body>
+
+<div id="flowers"></div>
+
+<div class="card">
+<div class="ribbon"></div>
+
+<h1>Dear Noor ❤️</h1>
+
+<div id="letter"></div><span class="cursor"></span>
+
+<button id="next">Continue →</button>
+
+</div>
+
+<script>
+for(let i=0;i<20;i++){
+const f=document.createElement('div');
+f.className='flower';
+f.textContent='🌸';
+f.style.left=Math.random()*100+'vw';
+f.style.animationDuration=(6+Math.random()*6)+'s';
+f.style.animationDelay=(-Math.random()*10)+'s';
+document.body.appendChild(f);
+}
+
+const text=`Soo first of all...
+
+Happy Birthday, Noor. ❤️
+
+This isn't just a birthday page.
+
+It's the beginning of something I wanted to make only for you.
+
+Every click from here onward will reveal another memory,
+another smile,
+another little piece of us.
+
+Welcome to your story. 🌸`;
+
+let i=0;
+function type(){
+if(i<text.length){
+document.getElementById('letter').innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,35);
+}else{
+document.getElementById('next').style.display='inline-block';
+}
+}
+type();
+
+document.getElementById('next').onclick=()=>{
+alert("Chapter 4: Polaroid Memory Gallery will come here.");
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Project Noor - Chapter 2</title>
+<style>
+body{margin:0;font-family:Arial;background:linear-gradient(135deg,#ffd9e8,#fff5fa);overflow:hidden;display:flex;align-items:center;justify-content:center;height:100vh}
+#gift,#env,#letter{transition:.8s}
+.card{background:#ffffffc9;padding:30px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.12);text-align:center}
+#gift{font-size:90px;cursor:pointer;animation:f 2s infinite}
+@keyframes f{50%{transform:translateY(-10px)}}
+#env{display:none;cursor:pointer}
+.envelope{width:320px;height:200px;background:#f8d7e4;position:relative;border-radius:8px}
+.flap{position:absolute;left:0;top:0;width:100%;height:100px;background:#f3bfd3;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:.8s}
+.paper{position:absolute;left:20px;right:20px;bottom:10px;height:160px;background:#fff;border-radius:8px;transform:translateY(120px);transition:1s;padding:18px;box-sizing:border-box}
+.open .flap{transform:rotateX(180deg)}
+.open .paper{transform:translateY(-20px)}
+#next{display:none;margin-top:15px;padding:10px 18px;border:none;border-radius:30px;background:#ff7dac;color:#fff;cursor:pointer}
+</style></head>
+<body>
+<div class='card' id='gift'>
+<div>🎁</div>
+<p>Click the gift</p>
+</div>
+<div id='env'>
+<div class='envelope' id='box'>
+<div class='flap'></div>
+<div class='paper'>
+<h3>Dear Noor ❤️</h3>
+<p>Happy Birthday. This is only the beginning of your little story...</p>
+<button id='next'>Continue →</button>
+</div>
+</div>
+<p>Click the envelope</p>
+</div>
+<script>
+gift.onclick=()=>{gift.style.display='none';env.style.display='block';}
+box.onclick=()=>{box.classList.add('open');next.style.display='inline-block';}
+next.onclick=()=>alert("Chapter 3 will replace this with the handwritten birthday letter and your photos.");
+</script>
+</body></html>

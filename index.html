@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Noor ❤️</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Great+Vibes&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:Poppins,sans-serif;
+background:linear-gradient(135deg,#ffdce8,#fff);
+height:100vh;overflow:hidden;
+display:flex;align-items:center;justify-content:center;color:#444;
+}
+.screen{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:.8s}
+.card{
+background:rgba(255,255,255,.55);
+backdrop-filter:blur(12px);
+padding:40px;border-radius:24px;
+box-shadow:0 15px 40px rgba(255,120,170,.2);
+text-align:center;width:min(90%,420px)
+}
+h1{font-family:"Great Vibes",cursive;font-size:3.2rem;color:#ff5c9a}
+input{
+width:100%;padding:14px;margin:20px 0;border:none;border-radius:12px;
+text-align:center;font-size:1rem
+}
+button{
+background:#ff8fb7;color:white;border:none;padding:14px 28px;
+border-radius:40px;font-size:1rem;cursor:pointer;transition:.3s
+}
+button:hover{transform:scale(1.05)}
+#main{opacity:0;pointer-events:none;flex-direction:column}
+.gift{
+font-size:90px;cursor:pointer;animation:float 2.5s ease-in-out infinite;
+}
+@keyframes float{
+50%{transform:translateY(-12px)}
+}
+.small{margin-top:18px;color:#666}
+.hearts span{
+position:absolute;
+font-size:18px;
+animation:rise linear infinite;
+opacity:.5;
+}
+@keyframes rise{
+from{transform:translateY(100vh)}
+to{transform:translateY(-10vh)}
+}
+</style>
+</head>
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<div class="screen" id="login">
+<div class="card">
+<h1>Project Noor</h1>
+<p>This surprise belongs to only one person. 🌸</p>
+<input id="pw" placeholder="Enter Password">
+<button onclick="unlock()">Unlock ❤️</button>
+<p id="msg" class="small"></p>
+</div>
+</div>
+
+<div class="screen" id="main">
+<div class="card">
+<div class="gift" onclick="openGift()">🎁</div>
+<h1 id="title">A Gift For Noor ❤️</h1>
+<p class="small">Click the gift to begin your birthday surprise.</p>
+</div>
+</div>
+
+<script>
+for(let i=0;i<35;i++){
+ const s=document.createElement('span');
+ s.textContent='❤';
+ s.style.left=Math.random()*100+'vw';
+ s.style.animationDuration=(6+Math.random()*8)+'s';
+ s.style.animationDelay=(-Math.random()*10)+'s';
+ document.getElementById('hearts').appendChild(s);
+}
+
+function unlock(){
+ const p=document.getElementById('pw').value.trim();
+ if(p==="AnyoneUP"){
+   document.getElementById('login').style.opacity=0;
+   setTimeout(()=>{
+      document.getElementById('login').style.display='none';
+      const m=document.getElementById('main');
+      m.style.opacity=1;
+      m.style.pointerEvents='auto';
+   },700);
+ }else{
+   document.getElementById('msg').textContent="Wrong password 💔";
+ }
+}
+
+function openGift(){
+ alert("✨ Happy Birthday, Noor!\\n\\nThis is only Chapter 1. We'll add the envelope, photos, letter, timeline, music and fireworks next.");
+}
+</script>
+
+</body>
+</html>
