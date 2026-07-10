@@ -73,8 +73,8 @@ animation:fall linear infinite;
 opacity:.6;
 }
 @keyframes fall{
-from{transform:translateY(-10vh) rotate(0deg);}
-to{transform:translateY(110vh) rotate(360deg);}
+from{transform:translateY(-10vh) rotate(0deg);} 
+to{transform:translateY(110vh) rotate(360deg);} 
 }
 </style>
 </head>
@@ -89,7 +89,7 @@ to{transform:translateY(110vh) rotate(360deg);}
 
 <div id="letter"></div><span class="cursor"></span>
 
-<button id="next">Continue →</button>
+<button id="next" type="button">Continue →</button>
 
 </div>
 
@@ -125,14 +125,27 @@ document.getElementById('letter').innerHTML+=text.charAt(i);
 i++;
 setTimeout(type,35);
 }else{
-document.getElementById('next').style.display='inline-block';
+const btn = document.getElementById('next');
+btn.style.display='inline-block';
+// ensure focus so keyboard users can press Enter
+btn.focus();
 }
 }
 type();
 
-document.getElementById('next').onclick=()=>{
-window.location.href='chapter4_scrapbook.html';
+// Use addEventListener to reliably attach the click handler
+document.getElementById('next').addEventListener('click', function(){
+// Use assign so it behaves like a normal navigation and keeps history
+window.location.assign('chapter4_scrapbook.html');
+});
+
+// Also allow Enter key to trigger when button is focused
+document.addEventListener('keydown', function(e){
+if((e.key === 'Enter' || e.key === ' ') && document.activeElement === document.getElementById('next')){
+e.preventDefault();
+document.getElementById('next').click();
 }
+});
 </script>
 
 </body>
