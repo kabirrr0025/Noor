@@ -23,15 +23,22 @@
     .nav-button{display:flex;justify-content:center;padding:30px 0;gap:20px}
     .nav-btn{padding:14px 32px;border:none;border-radius:30px;background:#ff78ab;color:#fff;font-size:16px;font-weight:bold;cursor:pointer;transition:.3s;box-shadow:0 8px 20px rgba(255,120,171,.3)}
     .nav-btn:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(255,120,171,.4)}
-    @media (max-width:520px){ .card{width:44vw} }
+    .music-toggle{position:fixed;bottom:30px;right:30px;background:#ff78ab;border:none;padding:15px 20px;border-radius:50px;cursor:pointer;font-size:20px;box-shadow:0 8px 20px rgba(255,120,171,.4);transition:.3s;z-index:100;color:#fff;font-weight:bold}
+    .music-toggle:hover{transform:scale(1.1);box-shadow:0 12px 28px rgba(255,120,171,.6)}
+    @media (max-width:520px){ .card{width:44vw} .music-toggle{padding:12px 16px;font-size:16px;bottom:20px;right:20px} }
   </style>
 </head>
 <body>
   <h1>📖 Our Little Scrapbook 🌸</h1>
 
+  <!-- Hidden background music - autoplay -->
+  <audio id="bgMusic" autoplay loop style="display: none;">
+    <source src="meri-banogi-kya-lyrics-lyricvideo-128-ytshorts.savetube.me.mp3" type="audio/mpeg">
+  </audio>
+
   <!-- Non-blocking in-page notice instead of alert() -->
   <div class="notice" role="status" aria-live="polite">
-    BEST TIMES FOR SURE!! (ykw you are so unbelievably special to me in a way that can never be measured or counted. You're not just my girlfriend. You're my best friend, my safe place, my partner in crime)
+    BEST TIMES FOR SURE!! (ykw you are so unbelievably special to me in a way that can never be measured or counted. You're not just my girlfriend. You're my best friend, my safe place, my partner in [...]
   </div>
 
   <div class="grid" aria-live="polite">
@@ -70,6 +77,9 @@
     <img id="big" alt="Expanded photo">
   </div>
 
+  <!-- Music Toggle Button -->
+  <button class="music-toggle" id="musicToggle" title="Toggle music">🎵 ON</button>
+
   <!-- Navigation Buttons -->
   <div class="nav-button">
     <a href="chapter5_memorybook.html" class="nav-btn">Go Ahead →</a>
@@ -79,6 +89,29 @@
     // Explicitly reference elements (don't rely on implicit globals)
     const light = document.getElementById('light');
     const big = document.getElementById('big');
+    const bgMusic = document.getElementById('bgMusic');
+    const musicToggle = document.getElementById('musicToggle');
+
+    // Set initial volume
+    bgMusic.volume = 0.4;
+
+    // Music toggle button
+    musicToggle.addEventListener('click', () => {
+      if (bgMusic.paused) {
+        bgMusic.play();
+        musicToggle.textContent = '🎵 ON';
+      } else {
+        bgMusic.pause();
+        musicToggle.textContent = '🎵 OFF';
+      }
+    });
+
+    // Attempt autoplay on page load
+    window.addEventListener('load', () => {
+      bgMusic.play().catch(() => {
+        console.log('Autoplay prevented - user interaction required');
+      });
+    });
 
     // Open lightbox when any grid image is clicked
     document.querySelectorAll('.card img').forEach(img => {
